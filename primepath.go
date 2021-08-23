@@ -48,8 +48,8 @@ func main() {
 			if i != j && isPrime[i] && isPrime[j] && isOk(i, j) {
 				hasPath[i][j] = true
 				hasPath[j][i] = true
-				shortest[i][j] = 1000000
-				shortest[j][i] = 1000000
+				shortest[i][j] = 10000
+				shortest[j][i] = 10000
 			}
 		}
 	}
