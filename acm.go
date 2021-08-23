@@ -6,13 +6,10 @@ import (
 )
 
 func main() {
-	var minute int
-	var problemId string
-	var status string
+	var problemId, status string
 	var isSolved map[string]bool
 	var penalty map[string]int
-	var totalTime int
-	var totalSolve int
+	var minute, totalTime, totalSolve int
 
 	isSolved = map[string]bool{}
 	penalty = map[string]int{}
