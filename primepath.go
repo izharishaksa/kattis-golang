@@ -28,10 +28,6 @@ func isOk(a, b int) bool {
 	return false
 }
 
-func dfs() {
-
-}
-
 func main() {
 	var isPrime [10000]bool
 	for i := 0; i < 10000; i++ {
@@ -46,11 +42,14 @@ func main() {
 		}
 	}
 	var hasPath [10000][10000]bool
-	for i := 1000; i < 10000; i += 2 {
-		for j := i + 1; j < 10000; j++ {
-			if isPrime[i] && isPrime[j] && isOk(i, j) {
+	var shortest [10000][10000]int
+	for i := 1000; i < 10000; i++ {
+		for j := 1000; j < 10000; j++ {
+			if i != j && isPrime[i] && isPrime[j] && isOk(i, j) {
 				hasPath[i][j] = true
 				hasPath[j][i] = true
+				shortest[i][j] = 1000000
+				shortest[j][i] = 1000000
 			}
 		}
 	}
@@ -60,13 +59,7 @@ func main() {
 
 	for i := 0; i < n; i++ {
 		fmt.Scanln(&a, &b)
-		var isVisited map[int]bool
-		var shortest map[int]int
-		shortest = map[int]int{}
-		for j := 1000; j < 10000; j++ {
-			shortest[j] = 100000
-		}
-		isVisited = map[int]bool{}
+		var isVisited = map[int]bool{}
 		isVisited[a] = true
 		q := list.New()
 		q.PushBack(Current{
@@ -79,24 +72,20 @@ func main() {
 		for q.Len() > 0 {
 			e := q.Front()
 			current := e.Value.(Current)
+
 			if current.Val == b {
 				result = current.Step
 				break
 			} else {
 				for x := 1000; x < 10000; x++ {
-					if shortest[x] > current.Step+1 &&
-						!current.IsVisited[x] &&
-						isPrime[x] &&
-						hasPath[current.Val][x] {
-						shortest[x] = current.Step + 1
-						var isVisited = current.IsVisited
-						isVisited[x] = true
+					if shortest[current.Val][x] >= current.Step+1 && !current.IsVisited[x] && isPrime[x] && hasPath[current.Val][x] {
+						var isVisitedNew = current.IsVisited
+						isVisitedNew[x] = true
 						q.PushBack(Current{
 							Val:       x,
-							IsVisited: isVisited,
+							IsVisited: isVisitedNew,
 							Step:      current.Step + 1,
 						})
-						break
 					}
 				}
 			}
