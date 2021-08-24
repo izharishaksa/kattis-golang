@@ -1,3 +1,4 @@
+//https://open.kattis.com/problems/everywhere
 package main
 
 import "fmt"
