@@ -48,8 +48,8 @@ func main() {
 			if i != j && isPrime[i] && isPrime[j] && isOk(i, j) {
 				hasPath[i][j] = true
 				hasPath[j][i] = true
-				shortest[i][j] = 10000
-				shortest[j][i] = 10000
+				shortest[i][j] = 1300
+				shortest[j][i] = 1300
 			}
 		}
 	}
@@ -78,7 +78,7 @@ func main() {
 				break
 			} else {
 				for x := 1000; x < 10000; x++ {
-					if shortest[current.Val][x] >= current.Step+1 && !current.IsVisited[x] && isPrime[x] && hasPath[current.Val][x] {
+					if shortest[current.Val][x] >= current.Step+1 && !current.IsVisited[x] && isPrime[x]  {
 						var isVisitedNew = current.IsVisited
 						isVisitedNew[x] = true
 						q.PushBack(Current{
