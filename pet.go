@@ -1,3 +1,4 @@
+//https://open.kattis.com/problems/pet
 package main
 
 import "fmt"

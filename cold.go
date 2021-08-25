@@ -1,3 +1,4 @@
+//https://open.kattis.com/problems/cold
 package main
 
 import "fmt"
