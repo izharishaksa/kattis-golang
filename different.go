@@ -4,6 +4,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -15,10 +16,6 @@ func main() {
 		input := strings.Split(scanner.Text(), " ")
 		a, _ := strconv.ParseUint(input[0], 10, 64)
 		b, _ := strconv.ParseUint(input[1], 10, 64)
-		if a > b {
-			fmt.Println(a - b)
-		} else {
-			fmt.Println(b - a)
-		}
+		fmt.Println(int64(math.Abs(float64(a) - float64(b))))
 	}
 }
